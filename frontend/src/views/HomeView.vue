@@ -1,9 +1,9 @@
-<script setup lang="ts">
+<script setup>
 
 </script>
 
 <template>
-  <main>
-
-  </main>
+  <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+    <h1 class="text-3xl"> Home Page </h1>
+  </div>
 </template>
