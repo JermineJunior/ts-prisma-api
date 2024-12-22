@@ -1,4 +1,5 @@
 <script setup>
+import { useAuthStore } from '@/stores/auth';
 import { reactive } from 'vue'
 const formData = reactive({
   user_name: "",
@@ -6,8 +7,9 @@ const formData = reactive({
   password: ""
 });
 
+const { register } = useAuthStore()
 const signUp = async () => {
-
+  await register(formData)
 }
 </script>
 
@@ -29,11 +31,6 @@ const signUp = async () => {
         <div class="my-5">
           <label for="password" class="input-label">Password</label>
           <input type="password" v-model="formData.password" name="password" class="text-input" placeholder="Password">
-        </div>
-        <!-- password confirmation -->
-        <div class="my-5">
-          <label for="password_confirmation" class="input-label">Password Confirmation</label>
-          <input type="password" name="password_confirmation" class="text-input" placeholder="Password">
         </div>
         <div class="flex items-center justify-end space-x-2">
           <RouterLink to="/login" class="text-sm text-zinc-400">already have an account</RouterLink>
