@@ -22,7 +22,12 @@ export const login = async (req: express.Request, res: express.Response) => {
       return res.status(401).json({ error: "Invalid email or password" })
     }
     const token = jwt.sign({ userId: (await user).id }, jwt_secret, { expiresIn: '2h' });
-    res.status(200).json({ token })
+    const userData = await user;
+    res.status(200).json({
+      user: {
+        user_name: userData.user_name, email: userData.email, created_at: userData.createdAt
+      }, token
+    })
   } catch (error) {
     res.status(500).json({ error: 'Login Failed' })
   }

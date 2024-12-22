@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('auth', {
         body: JSON.stringify(formData),
       })
       const data = await res.json()
-      console.log(data)
+      this.user = data.user
       localStorage.setItem('token', data.token);
       this.router.push({ name: "home" })
     }

@@ -1,10 +1,8 @@
 import express from "express"
 import bcrypt from 'bcrypt'
-import jwt from "jsonwebtoken";
 import prisma from "../prisma";
 
 
-const jwt_secret = process.env.JWT_SECRET
 export const register = async (req: express.Request, res: express.Response) => {
 
   const { user_name, email, password } = req.body
@@ -27,5 +25,4 @@ export const register = async (req: express.Request, res: express.Response) => {
   } catch (error) {
     res.status(400).json({ error: "User already exists or data is invalid" })
   }
-
 }
