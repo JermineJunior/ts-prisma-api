@@ -1,6 +1,7 @@
 import express from "express"
 import bcrypt from 'bcrypt'
 import prisma from "../prisma";
+import User from "../models/User";
 
 
 export const register = async (req: express.Request, res: express.Response) => {
@@ -8,7 +9,7 @@ export const register = async (req: express.Request, res: express.Response) => {
   const { user_name, email, password } = req.body
   try {
     const hashedPassword = await bcrypt.hash(password, 10)
-    const user = await prisma.user.create({
+    const user: User = await prisma.user.create({
       data: {
         user_name: user_name,
         email: email,
