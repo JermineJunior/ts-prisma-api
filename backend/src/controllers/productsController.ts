@@ -39,6 +39,25 @@ export const getProductById = async (req: Request, res: Response) => {
   }
 }
 
+export const getProductByName = async (req: Request, res: Response) => {
+  const productName = req.body.name
+  try {
+    const product: Product = await productClient.findFirst({
+      where: {
+        name: productName,
+      }
+    });
+
+    if (!product) {
+      res.status(404).json({ message: 'Product Not Found' })
+    } else {
+      res.status(200).json({ product })
+    }
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
+
 export const updateProduct = async (req: Request, res: Response) => {
   const productId = parseInt(req.params.id)
   const data = req.body
